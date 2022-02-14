@@ -1,0 +1,125 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+//criando uma LISTA/VETOR chamado VALORES com 3 valores...
+  var perguntas = [
+    'maior cidade de sc',
+    'maior cidade do brasil',
+    'maior pais da america do sul'
+  ];
+
+  var respostas_certa = ['joinville', 'sao paulo', 'brasil'];
+
+  var respostas1 = ['joinville', 'curitiba', 'argentina'];
+
+  var respostas2 = ['itapema', 'sao paulo', 'uruguai'];
+
+  var respostas3 = ['tijucas', 'rio de janeiro', 'brasil'];
+
+  var indice = 0;
+
+  var resultado = ['resultado'];
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        //tudo q ta no safe area ta na area visivel do app
+        body: SafeArea(
+          //column para se quiser poder criar VARIOS CONTAINERS
+          child: Column(
+            //children é tipo uma lista/vetor de coisas tipo containers
+            children: [
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.blue,
+                child: Text(perguntas[indice]),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (respostas1[indice] == respostas_certa[indice]) {
+                      resultado = ['resposta 1 certa'];
+                      indice = indice + 1;
+                    } else {
+                      resultado = ['resposta 1 errada'];
+                      indice = indice + 1;
+                    }
+                  });
+                },
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.green,
+                  child: Text(respostas1[indice]),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (respostas2[indice] == respostas_certa[indice]) {
+                      resultado = ['resposta 2 certa'];
+                      indice = indice + 1;
+                    } else {
+                      resultado = ['resposta 2 errada'];
+                      indice = indice + 1;
+                    }
+                  });
+                },
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.orange,
+                  child: Text(respostas2[indice]),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (respostas3[indice] == respostas_certa[indice]) {
+                      resultado = ['resposta 3 certa'];
+                      indice = indice + 1;
+                    } else {
+                      resultado = ['resposta 3 errada'];
+                      indice = indice + 1;
+                    }
+                  });
+                },
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.purple,
+                  child: Text(respostas3[indice]),
+                ),
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.lime,
+                child: Text('$resultado'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
